@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="client.css" type="text/css" rel="stylesheet">
+        <meta charset="utf-8">
+        <script src="framework.js"></script>
+        <script src="serverstub.js"></script>
+        <script src="API.js"></script>
+        <script src="client.js"></script>
+        <title>Twidder</title>
+
+        <script type="text/template" id="WelcomeView">
+            <div class="box" id="logo">
+                <!--
+                <h1>Twidder</h1>
+                <h2>Socialize with other people around the world!<h2>
+                    <h3>http://www.ida.liu.se/~TDDD24</h3>
+                -->
+                <img src="wimage.png" width="100%" height="100%">
+            </div>
+            <div class="box" id="login">
+                <form id="loginForm" method="post">
+                    <div class="form-group">
+                        <label for="lg_email">Email: </label>
+                        <input id="lg_email" type="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="lg_passwd">Password: </label>
+                        <input id="lg_passwd" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="errorMessage"></div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div class="box" id="signup">
+                <form id="signupForm" method="post">
+                    <div class="form-group">
+                        <label for="su_email">Email: </label>
+                        <input id="su_email" type="email" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_passwd">Password: </label>
+                        <input id="su_passwd" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_confirm">Confirm password: </label>
+                        <input id="su_confirm" type="password" name="confirm" placeholder="Confirm">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_fname">First name: </label>
+                        <input id="su_fname" type="text" name="firstname" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_lname">Family name: </label>
+                        <input id="su_lname" type="text" name="familyname" placeholder="Family name">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_sex">Gender: </label>
+                        <select id="su_sex" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="su_city">City: </label>
+                        <input id="su_city" type="text" name="city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                        <label for="su_country">Country: </label>
+                        <input id="su_country" type="text" name="country" placeholder="Country">
+                    </div>
+                    <div class="errorMessage"></div>
+                    <button type="submit">Sign up!</button>
+                </form>
+            </div>
+        </script>
+
+        <script type="text/template" id="ProfileView">
+            <div id="navbar">
+                <div id="tabs"></div>
+                <div id="side">
+                    <b>{{firstname}} {{familyname}}</b>
+                    <button id="logout">Logout</button>
+                </div>
+            </div>
+            <div id="pv_content"></div>
+        </script>
+
+        <script type="text/template" id="AccountView">
+            <h2>Change password</h2>
+            <form method="post" class="clear thin">
+                <div class="form-group">
+                    <label for="cp_old">Old password:</label>
+                    <input id="cp_old" name="old_password" type="password">
+                </div>
+                <div class="form-group">
+                    <label for="cp_new">New password:</label>
+                    <input id="cp_new" name="new_password" type="password">
+                </div>
+                <div class="form-group">
+                    <label for="cp_confirm">Repeat new password:</label>
+                    <input id="cp_confirm" name="confirm" type="password">
+                </div>
+                <div class="errorMessage"></div>
+                <button>Change password!</button>
+            </form>
+        </script>
+
+        <script type="text/template" id="UserView">
+            <h1>{{firstname}} {{familyname}}</h1>
+
+            <table>
+                <tr><th>Email:</th><td><a href="mailto:{{email}}">{{email}}</a></td></tr>
+                <tr><th>Gender:</th><td>{{gender}}</td></tr>
+                <tr><th>City:</th><td>{{city}}</td></tr>
+                <tr><th>Country:</th><td>{{country}}</td></tr>
+            </table>
+
+            <div id="uv_refresh"></div>
+            <p>
+            <!--
+            <h3>Wall:</h3>
+            <button id="refreshPosts">Refresh</button>
+            -->
+
+            <form method="post">
+                <div><label for="wp_message">Post to wall:</label></div>
+                <textarea id="wp_message" name="message"></textarea>
+                <button>Post!</button>
+            </form>
+
+            <div id="wallPosts"></div>
+        </script>
+
+
+        <script type="text/template" id="BrowseView">
+            <form method="post">
+                <input type="search" name="email" placeholder="User email">
+            </form>
+            <div id="userProfile"></div>
+        </script>
+
+        <script type="text/template" id="WallPost">
+            <div class="wp_writer"><a href="#profile/browse/{{writer.email}}">{{writer.firstname}} {{writer.familyname}}</a></div>
+            <div class="wp_content">{{content}}</div>
+        </script>
+
+    </head>
+
+    <body>
+        <div id="content" class="clear"></div>
+    </body>
+</html>
